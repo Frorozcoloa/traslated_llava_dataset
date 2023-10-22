@@ -45,12 +45,13 @@ def main(chunks_created):
     # Iterate through the dataset and save each chunk
     print("Total number of chunks: ", num_chunks)
     for i in range(chunks_created, num_chunks):
+        print(f"------->Creating chunk {i} / {num_chunks}<-------")
         chunk = dataset[i * chunk_size : (i + 1) * chunk_size]
         chunk = datasets.Dataset.from_dict(chunk)
         dataset_translated = chunk.map(traslated_dataset)
         dataset_translated.to_json(output_directory + f"/chunk_{i}.json")
         chunks_created += 1
-        print(f"------->Creating chunk {i} / {num_chunks}<-------")
+        print(f"------->Chunk {i} created<-------")
 
 if __name__ == "__main__":
     main()
