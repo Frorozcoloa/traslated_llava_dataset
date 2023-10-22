@@ -49,7 +49,8 @@ def main(chunks_created):
         chunk = dataset[i * chunk_size : (i + 1) * chunk_size]
         chunk = datasets.Dataset.from_dict(chunk)
         dataset_translated = chunk.map(traslated_dataset)
-        dataset_translated.to_json(output_directory + f"/chunk_{i}.json")
+        name_file_save = DIRECTORY / output_directory / f"chunk_{i}.json"
+        dataset_translated.to_json(name_file_save)
         chunks_created += 1
         print(f"------->Chunk {i} created<-------")
 
